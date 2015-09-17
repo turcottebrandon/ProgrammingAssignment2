@@ -1,3 +1,35 @@
+#### Example:
+#
+# a <- makeCacheMatrix(c(1,2,3,4))
+# b <- makeCacheMatrix(c(3,2,1,1,1,-1,0,1,2))
+# cacheSolve(a)
+#        [,1] [,2]
+#   [1,]   -2  1.5
+#   [2,]    1 -0.5
+#
+# cacheSolve(b)
+#         [,1]       [,2]       [,3]
+#    [1,]  0.5 -0.3333333  0.1666667
+#    [2,] -0.5  1.0000000 -0.5000000
+#    [3,] -0.5  0.6666667  0.1666667
+#
+# c <- makeCacheMatrix(c(1,2,3,4,5,6))
+#
+# cacheSolve(a)
+#   getting cached data
+#         [,1] [,2]
+#    [1,]   -2  1.5
+#    [2,]    1 -0.5
+#
+# cacheSolve(c)
+#         [,1] [,2]
+#   [1,]   -2  1.5
+#   [2,]    1 -0.5
+#
+################################################
+
+
+
 makeCacheMatrix <- function(x = matrix()) {
   
   #makeCacheMatrix() contains 4 functions:
