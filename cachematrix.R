@@ -1,5 +1,3 @@
-
-
 makeCacheMatrix <- function(x = matrix()) {
   
   #makeCacheMatrix() defines 4 functions:
@@ -8,29 +6,32 @@ makeCacheMatrix <- function(x = matrix()) {
   #  get() returns the current stored matrix
   #  setinv() stores the value of the inverted matrix..
   #  getinv() ..and returns it
+  #
+  # Note:  This function must be called prior to calling cacheMatrix.
   ##########################
   
-  m <- NULL  #define a temporary variable 'm' and set to NULL
-  
-  set <- function(y) {
-    x <<- y
-    m <<- NULL
-  }
-  
-  get <- function() {
-    matrix(x,sqrt(length(x)),sqrt(length(x)))
-  }
-  
-  setinv <- function(solve) { 
-    m <- solve
-  }
-  getinv <- function() {
-    m
-  }
-  
-  list(set = set, get = get,
-       setinv = setinv,
-       getinv = getinv)
+        m <- NULL  #define a temporary variable 'm' and set to NULL
+          
+          set <- function(y) {
+                x <<- y
+                m <<- NULL
+          }
+          
+          get <- function() {
+                matrix(x,sqrt(length(x)),sqrt(length(x)))
+          }
+          
+          setinv <- function(solve) { 
+                m <- solve
+          }
+          
+          getinv <- function() {
+                m
+          }
+          
+          list(set = set, get = get,
+               setinv = setinv,
+               getinv = getinv)
 }
 
 
@@ -43,16 +44,19 @@ cacheSolve <- function (x, ...) {
   #  it will display "getting cached data" and load the matrix.  If it does not
   #  exist, the inverse will be calcuated and displayed.
   #
+  # Note:  makeCacheMatrix must be called prior to calling this function.
   ##########################
   
-  m <- x$getinv()
-  if(!is.null(m)) {
-    message("getting cached data")
-    return(m)
-  }
-  data <- x$get()
-  m <- solve(data, ...)
-  x$setinv(m)
-  m
-  
+        m <- x$getinv()  
+          
+          if(!is.null(m)) {
+                message("getting cached data")
+                return(m)
+          }
+          
+                data <- x$get()
+                m <- solve(data, ...)
+                x$setinv(m)
+                m
+          
 }
