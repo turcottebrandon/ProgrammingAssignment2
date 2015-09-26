@@ -1,47 +1,16 @@
-#### Example:
-#
-# a <- makeCacheMatrix(c(1,2,3,4))
-# b <- makeCacheMatrix(c(3,2,1,1,1,-1,0,1,2))
-# cacheSolve(a)
-#        [,1] [,2]
-#   [1,]   -2  1.5
-#   [2,]    1 -0.5
-#
-# cacheSolve(b)
-#         [,1]       [,2]       [,3]
-#    [1,]  0.5 -0.3333333  0.1666667
-#    [2,] -0.5  1.0000000 -0.5000000
-#    [3,] -0.5  0.6666667  0.1666667
-#
-# c <- makeCacheMatrix(c(1,2,3,4,5,6))
-#
-# cacheSolve(a)
-#   getting cached data
-#         [,1] [,2]
-#    [1,]   -2  1.5
-#    [2,]    1 -0.5
-#
-# cacheSolve(c)
-#         [,1] [,2]
-#   [1,]   -2  1.5
-#   [2,]    1 -0.5
-#
-################################################
-
 
 
 makeCacheMatrix <- function(x = matrix()) {
   
-  #makeCacheMatrix() contains 4 functions:
+  #makeCacheMatrix() defines 4 functions:
   #
   #  set() changes the stored matrix
   #  get() returns the current stored matrix
   #  setinv() stores the value of the inverted matrix..
   #  getinv() ..and returns it
   ##########################
-  ##########################
   
-  m <- NULL
+  m <- NULL  #define a temporary variable 'm' and set to NULL
   
   set <- function(y) {
     x <<- y
@@ -53,7 +22,7 @@ makeCacheMatrix <- function(x = matrix()) {
   }
   
   setinv <- function(solve) { 
-    m <<- solve
+    m <- solve
   }
   getinv <- function() {
     m
@@ -75,8 +44,6 @@ cacheSolve <- function (x, ...) {
   #  exist, the inverse will be calcuated and displayed.
   #
   ##########################
-  ##########################
-  
   
   m <- x$getinv()
   if(!is.null(m)) {
